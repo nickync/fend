@@ -70,11 +70,18 @@ section {
     text-align: right;
 }
 
+/* ***********modified CSS ************** */
 .navbar__menu li {
     display: inline-block;
 }
 
-.navbar__menu .menu__link {
+#navbar__list a {
+    font-size: 1rem;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.navbar__menu ul {
     display: block;
     padding: 1em;
     font-weight: bold;
@@ -82,7 +89,7 @@ section {
     color: #000;
 }
 
-.navbar__menu .menu__link:hover {
+.navbar__menu a:hover {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
@@ -221,3 +228,19 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
+
+/* scroll to top button */
+
+#btn {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    right:5%;
+    bottom: 5%;
+    background-color: white;
+    color: black;
+    border:none;
+    padding: 1rem;
+    opacity: 0.8;
+}
+
