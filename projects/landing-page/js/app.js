@@ -26,7 +26,6 @@
 //get section nodes
 const section = document.querySelectorAll('section')
 
-
 /**
  * End Global Variables
  * Start Helper Functions
@@ -53,13 +52,20 @@ function createButton() {
         aLinks.appendChild(textNode)
 
 // add scrollTo events to anchor
-        //aLinks.href = `#${item.id}`
-        aLinks.addEventListener('click', ()=> {
+        aLinks.href = `#${item.id}`
+        aLinks.addEventListener('click', (event)=> {
+
+            // prevent default anchor jump action
+            event.preventDefault()
+
             document.querySelector(`#${item.id}`).scrollIntoView({
                 behavior:"smooth"
             })
         })
 
+        // add id to a tag
+        aLinks.setAttribute('id', `#${item.id}`)
+        
         // append anchor tag to li
         navList.appendChild(aLinks)
 
@@ -83,9 +89,9 @@ function isActive(elem) {
         let position = elem.getBoundingClientRect()
 
         // return true if in viewport
-        return (position.top + window.innerHeight >= 0 &&
+        return (position.top + (window.innerHeight * 0.8) >= 0 &&
             position.left >= 0 &&
-            position.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            position.bottom +38 <= (window.innerHeight || document.documentElement.clientHeight) &&
             position.right <= (window.innerWidth || document.documentElement.clientWidth)
         ) 
 }
@@ -93,14 +99,16 @@ function isActive(elem) {
 // filter section and add class
 
 function addClass() {
-
+    
     return section.forEach(item => {
 
         // add class when true and remove when false
         if (isActive(item)) {
             item.classList.add('your-active-class')
+            document.getElementById(`#${item.id}`).classList.add('active-class')
         } else if (isActive(item) === false) {
             item.classList.remove('your-active-class')
+            document.getElementById(`#${item.id}`).classList.remove('active-class')
         }
     })
 }
